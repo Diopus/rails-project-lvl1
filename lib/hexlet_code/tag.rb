@@ -2,7 +2,7 @@
 
 # a
 class Tag
-  def self.build(name, **kwargs, &block)
+  def self.build(name, **kwargs, &_block)
     return "<>" if name.nil?
 
     array = ["<#{name}"]
