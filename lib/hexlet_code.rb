@@ -5,7 +5,8 @@ require_relative "hexlet_code/form_for"
 require_relative "hexlet_code/version"
 # comment
 module HexletCode
-  autoload(:Tag, "./lib/hexlet_code/tag.rb")
+  project_path = File.expand_path(".")
+  autoload(:Tag, [project_path, "/lib/hexlet_code/tag.rb"].join)
 
   class Error < StandardError; end
   # Your code goes here...
