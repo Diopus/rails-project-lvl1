@@ -35,7 +35,7 @@ module HexletCode
         label = build_label(field)
 
         is_textarea = options[:as] == :text
-        input = is_textarea ? build_textarea(field) : build_input(field)
+        input = is_textarea ? build_textarea(field, options) : build_input(field)
 
         fields.push("  #{label}", "  #{input}") # temporary solution for tab
       end
@@ -62,13 +62,13 @@ module HexletCode
         )
       end
 
-      def build_textarea(field)
+      def build_textarea(field, options)
         field_value = public_send(field)
 
         Tag.build(
           "textarea",
-          cols: "20",
-          rows: "40",
+          cols: options.fetch(:cols, "20"),
+          rows: options.fetch(:rows, "40"),
           name: field
         ) { field_value }
       end
