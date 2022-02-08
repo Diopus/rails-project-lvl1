@@ -2,6 +2,8 @@
 
 # comment
 module HexletCode
+  # TEXTAREA_DEFAULT_OPTIONS = { cols: "20", rows: "40", name: field }.freeze
+
   def self.form_for(obj, url: "#", &block)
     form_fields = build_form_fields(obj, &block)
 
@@ -32,46 +34,46 @@ module HexletCode
       attr_accessor :fields
 
       def input(field, options = {})
-        label = build_label(field)
+        label = build_label(field, options)
 
         is_textarea = options[:as] == :text
-        input = is_textarea ? build_textarea(field, options) : build_input(field)
+        input = is_textarea ? build_textarea(field, options) : build_input(field, options)
 
         fields.push("  #{label}", "  #{input}") # temporary solution for tab
       end
 
       private
 
-      def build_label(field)
+      def build_label(field, options)
         field_value = field.to_s.capitalize
+        default_options = { for: field.to_s }
+        given_options = options.except(:as)
 
-        Tag.build(
-          "label",
-          for: field.to_s
-        ) { field_value }
+        Tag.build("label", default_options.merge(given_options)) { field_value }
       end
 
-      def build_input(field)
+      def build_input(field, options)
         field_value = public_send(field)
+        default_options = { name: field, type: "text", value: field_value }
+        given_options = options.except(:as)
 
-        Tag.build(
-          "input",
-          name: field,
-          type: "text",
-          value: field_value
-        )
+        Tag.build("input", default_options.merge(given_options))
       end
 
       def build_textarea(field, options)
         field_value = public_send(field)
+        default_options = { cols: "20", rows: "40", name: field }
+        given_options = options.except(:as)
 
-        Tag.build(
-          "textarea",
-          cols: options.fetch(:cols, "20"),
-          rows: options.fetch(:rows, "40"),
-          name: field
-        ) { field_value }
+        Tag.build("textarea", default_options.merge(given_options)) { field_value }
       end
+
+      # def build_the_field(field_type, options, default_options, &_block)
+      #   given_options = options.except(:as)
+      #   updated_options = default_options.merge(given_options)
+      #
+      # Tag.build(field_type, updated_options) &_block
+      # end
     end
 
     # obj.class.define_method :input do |field, options = {}|
@@ -81,20 +83,15 @@ module HexletCode
   # rubocop:enable Metrics/AbcSize
   # rubocop:enable Metrics/MethodLength
 
-  # rubocop:disable Metrics/MethodLength
   def self.build_method_submit(obj)
     class << obj
-      def submit(value = "Save")
-        new_tag = Tag.build(
-          "input",
-          name: "commit",
-          type: "submit",
-          value: value
-        )
+      def submit(value = "Save", options = {})
+        default_options = { name: "commit", type: "submit", value: value }
+        given_options = options.except(:as)
+        new_tag = Tag.build("input", default_options.merge(given_options))
 
         fields.push("  #{new_tag}") # temporary solution for tab
       end
     end
   end
-  # rubocop:enable Metrics/MethodLength
 end

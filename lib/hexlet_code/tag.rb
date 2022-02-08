@@ -4,11 +4,11 @@
 module HexletCode
   # comment
   class Tag
-    def self.build(name, **kwargs, &_block)
+    def self.build(name, options = {}, &_block)
       return "<>" if name.nil?
 
-      kwargs.compact!
-      kwargs.each_with_object(fields = []) { |(k, v), _| fields << " #{k}=\"#{v}\"" }
+      options.compact!
+      options.each_with_object(fields = []) { |(k, v), _| fields << " #{k}=\"#{v}\"" }
 
       array = ["<#{name}", fields, ">"]
       array << "#{yield}</#{name}>" if block_given?
