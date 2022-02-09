@@ -4,27 +4,27 @@
 module HexletCode
   # TEXTAREA_DEFAULT_OPTIONS = { cols: "20", rows: "40", name: field }.freeze
 
-  def self.form_for(obj, url: "#", &block)
+  def self.form_for(obj, url: '#', &block)
     form_fields = build_form_fields(obj, &block)
 
     Tag.build(
-      "form",
+      'form',
       action: url,
-      method: "post"
-    ) { form_fields.join("\n") }
+      method: 'post'
+    ) { form_fields.join('\n') }
   end
 
   def self.build_form_fields(obj, &_block)
-    form_fields = [""]
+    form_fields = ['']
 
     if block_given?
       build_method_input(obj) unless obj.singleton_methods.include?(:input)
       build_method_submit(obj) unless obj.singleton_methods.include?(:submit)
-      obj.fields = [""]
+      obj.fields = ['']
       form_fields = yield(obj)
     end
 
-    form_fields << ""
+    form_fields << ''
   end
 
   # rubocop:disable Metrics/MethodLength
@@ -49,23 +49,23 @@ module HexletCode
         default_options = { for: field.to_s }
         given_options = options.except(:as)
 
-        Tag.build("label", default_options.merge(given_options)) { field_value }
+        Tag.build('label', default_options.merge(given_options)) { field_value }
       end
 
       def build_input(field, options)
         field_value = public_send(field)
-        default_options = { name: field, type: "text", value: field_value }
+        default_options = { name: field, type: 'text', value: field_value }
         given_options = options.except(:as)
 
-        Tag.build("input", default_options.merge(given_options))
+        Tag.build('input', default_options.merge(given_options))
       end
 
       def build_textarea(field, options)
         field_value = public_send(field)
-        default_options = { cols: "20", rows: "40", name: field }
+        default_options = { cols: '20', rows: '40', name: field }
         given_options = options.except(:as)
 
-        Tag.build("textarea", default_options.merge(given_options)) { field_value }
+        Tag.build('textarea', default_options.merge(given_options)) { field_value }
       end
 
       # def build_the_field(field_type, options, default_options, &_block)
@@ -85,10 +85,10 @@ module HexletCode
 
   def self.build_method_submit(obj)
     class << obj
-      def submit(value = "Save", options = {})
-        default_options = { name: "commit", type: "submit", value: value }
+      def submit(value = 'Save', options = {})
+        default_options = { name: 'commit', type: 'submit', value: value }
         given_options = options.except(:as)
-        new_tag = Tag.build("input", default_options.merge(given_options))
+        new_tag = Tag.build('input', default_options.merge(given_options))
 
         fields.push("  #{new_tag}") # temporary solution for tab
       end
