@@ -11,7 +11,7 @@ module HexletCode
       'form',
       action: url,
       method: 'post'
-    ) { form_fields.join('\n') }
+    ) { form_fields.join("\n") }
   end
 
   def self.build_form_fields(obj, &_block)

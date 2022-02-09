@@ -8,11 +8,11 @@ class TestFormFor < Minitest::Test
   def test_form_for_generates_empty_form
     user = User.new name: 'rob', job: 'hexlet', gender: 'm'
 
-    expected_form = '<form action=\"/users\" method=\"post\">\n</form>'
+    expected_form = "<form action=\"/users\" method=\"post\">\n</form>"
     generated_form = HexletCode.form_for user, url: '/users'
     assert_equal expected_form, generated_form
 
-    expected_form = '<form action=\"#\" method=\"post\">\n</form>'
+    expected_form = "<form action=\"#\" method=\"post\">\n</form>"
     generated_form = HexletCode.form_for user
     assert_equal expected_form, generated_form
   end
