@@ -27,8 +27,8 @@ module HexletCode
     form_fields << ''
   end
 
-  # rubocop:disable Metrics/MethodLength
   # rubocop:disable Metrics/AbcSize
+  # rubocop:disable Metrics/MethodLength
   def self.build_method_input(obj)
     class << obj
       attr_accessor :fields
@@ -80,8 +80,8 @@ module HexletCode
     #
     # end
   end
-  # rubocop:enable Metrics/AbcSize
   # rubocop:enable Metrics/MethodLength
+  # rubocop:enable Metrics/AbcSize
 
   def self.build_method_submit(obj)
     class << obj
