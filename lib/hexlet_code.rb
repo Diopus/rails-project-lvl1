@@ -4,6 +4,7 @@ require 'active_support/inflector'
 require_relative 'hexlet_code/form_for'
 require_relative 'hexlet_code/version'
 
+# autoloading tools
 module HexletCode
   autoload(:Builder, ['hexlet_code/', 'builder.rb'].join)
   autoload(:Tag, ['hexlet_code/', 'tag.rb'].join)
