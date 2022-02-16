@@ -2,13 +2,17 @@
 
 require 'active_support/inflector'
 require_relative 'hexlet_code/form_for'
-require_relative 'hexlet_code/tag'
 require_relative 'hexlet_code/version'
+
 # comment
 module HexletCode
-  # project_path = File.expand_path('.')
-  # autoload(:Tag, [project_path, '/lib/hexlet_code/tag.rb'].join)
+  autoload(:Builder, ['hexlet_code/', 'builder.rb'].join)
+  autoload(:Tag, ['hexlet_code/', 'tag.rb'].join)
+
+  autoload(:Label, ['hexlet_code/form_objects/', 'label.rb'].join)
+  autoload(:Textarea, ['hexlet_code/form_objects/', 'textarea.rb'].join)
+  autoload(:Input, ['hexlet_code/form_objects/', 'input.rb'].join)
+  autoload(:Submit, ['hexlet_code/form_objects/', 'submit.rb'].join)
 
   class Error < StandardError; end
-  # Your code goes here...
 end

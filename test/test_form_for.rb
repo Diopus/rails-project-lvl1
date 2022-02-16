@@ -20,7 +20,7 @@ class TestFormFor < Minitest::Test
   def test_form_for_generates_form_w_input
     user = User.new name: 'rob', job: 'hexlet', gender: 'm'
 
-    expected_form = File.read('./test/fixtures/form_w_input.html').strip
+    expected_form = fixture_file('form_w_input.html').strip
     generated_form = HexletCode.form_for user do |f|
       f.input :name
     end
@@ -30,7 +30,7 @@ class TestFormFor < Minitest::Test
   def test_form_for_generates_form_w_testarea
     user = User.new name: 'rob', job: 'hexlet', gender: 'm'
 
-    expected_form = File.read('./test/fixtures/form_w_testarea.html').strip
+    expected_form = fixture_file('form_w_testarea.html').strip
     generated_form = HexletCode.form_for user do |f|
       f.input :name
       f.input :job, as: :text
@@ -51,7 +51,7 @@ class TestFormFor < Minitest::Test
   def test_form_for_generates_form_w_default_submit
     user = User.new job: 'hexlet'
 
-    expected_form = File.read('./test/fixtures/form_w_default_submit.html').strip
+    expected_form = fixture_file('form_w_default_submit.html').strip
     generated_form = HexletCode.form_for user do |f|
       f.input :name
       f.submit
