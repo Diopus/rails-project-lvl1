@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-# comment
 module HexletCode
-  # comment
   class Tag
     def self.build(name, options = {}, &_block)
       return '<>' if name.nil?
