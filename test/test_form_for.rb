@@ -5,14 +5,14 @@ require 'test_helper'
 class TestFormFor < Minitest::Test
   User = Struct.new(:name, :job, :gender, keyword_init: true)
 
-  def test_form_for_generates_empty_form
+  def test_form_for_generates_form_simple
     user = User.new name: 'rob', job: 'hexlet', gender: 'm'
 
-    expected_form = '<form action="/users" method="post"></form>'
+    expected_form = fixture_file('form_simple_w_url.html').strip
     generated_form = HexletCode.form_for user, url: '/users'
     assert_equal expected_form, generated_form
 
-    expected_form = '<form action="#" method="post"></form>'
+    expected_form = fixture_file('form_simple_wo_url.html').strip
     generated_form = HexletCode.form_for user
     assert_equal expected_form, generated_form
   end

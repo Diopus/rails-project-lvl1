@@ -10,14 +10,7 @@ module HexletCode
 
     def input(field, options = {})
       label = Label.build(field, options)
-
-      is_textarea = options[:as] == :text
-      input = if is_textarea
-                Textarea.build(field, @object.public_send(field), options)
-              else
-                Input.build(field, @object.public_send(field), options)
-              end
-
+      input = Input.build(field, @object.public_send(field), options)
       @fields.push(label, input)
     end
 
