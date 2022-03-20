@@ -3,12 +3,9 @@
 module HexletCode
   class Tag
     def self.build(name, options = {}, &_block)
-      options.each_with_object(fields = []) { |(k, v), _| fields << " #{k}=\"#{v}\"" }
-
-      tag = ["<#{name}", fields, '>']
-      tag << "#{yield}</#{name}>" if block_given?
-
-      tag.join
+      fields = options.map { |k, v| " #{k}=\"#{v}\"" }.join
+      content = "#{yield}</#{name}>" if block_given?
+      "<#{name}#{fields}>#{content}"
     end
   end
 end
