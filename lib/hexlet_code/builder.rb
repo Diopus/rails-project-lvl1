@@ -10,7 +10,12 @@ module HexletCode
 
     def input(field, options = {})
       label = Label.build(field, options)
-      input = Input.build(field, @object.public_send(field), options)
+
+      input_type = options.fetch(:as, '').capitalize
+      input_class_name = "HexletCode::Inputs::#{input_type}Input"
+      input_class = input_class_name.constantize
+      input = input_class.build(field, @object.public_send(field), options)
+
       @fields.push(label, input)
     end
 

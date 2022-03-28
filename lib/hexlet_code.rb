@@ -8,10 +8,10 @@ require_relative 'hexlet_code/version'
 module HexletCode
   autoload(:Builder, ['hexlet_code/', 'builder.rb'].join)
   autoload(:Tag, ['hexlet_code/', 'tag.rb'].join)
-  autoload(:Label, ['hexlet_code/form_objects/', 'label.rb'].join)
-  autoload(:Textarea, ['hexlet_code/form_objects/', 'textarea.rb'].join)
-  autoload(:Input, ['hexlet_code/form_objects/', 'input.rb'].join)
-  autoload(:Submit, ['hexlet_code/form_objects/', 'submit.rb'].join)
+
+  autoload(:Label, ['hexlet_code/', 'label.rb'].join)
+  autoload(:Inputs, ['hexlet_code/', 'inputs.rb'].join)
+  autoload(:Submit, ['hexlet_code/', 'submit.rb'].join)
 
   class Error < StandardError; end
 end

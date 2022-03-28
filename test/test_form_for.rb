@@ -62,14 +62,12 @@ class TestFormFor < Minitest::Test
   def test_form_for_throws_error_on_wrong_field
     user = User.new name: 'rob', job: 'hexlet', gender: 'm'
 
-    error = assert_raises(NoMethodError) do
+    assert_raises(NoMethodError) do
       HexletCode.form_for user do |f|
         f.input :name
         f.input :job, as: :text
         f.input :age
       end
     end
-    error_text = "undefined method `age' for #<struct TestFormFor::User name=\"rob\", job=\"hexlet\", gender=\"m\">"
-    assert error.message.include?(error_text)
   end
 end

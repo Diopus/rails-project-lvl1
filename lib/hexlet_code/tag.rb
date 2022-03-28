@@ -4,8 +4,10 @@ module HexletCode
   class Tag
     def self.build(name, options = {}, &_block)
       fields = options.map { |k, v| " #{k}=\"#{v}\"" }.join
-      content = "#{yield}</#{name}>" if block_given?
-      "<#{name}#{fields}>#{content}"
+      return "<#{name}#{fields}>" if name == 'input'
+
+      content = block_given? ? yield : ''
+      "<#{name}#{fields}>#{content}</#{name}>"
     end
   end
 end
