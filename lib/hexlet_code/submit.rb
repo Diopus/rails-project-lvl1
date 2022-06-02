@@ -8,7 +8,9 @@ module HexletCode
       default_options = { name: 'commit', type: 'submit', value: value }
       given_options = options.except(:as)
 
-      Tag.build('input', default_options.merge(given_options))
+      { name: 'input',
+      options: default_options.merge(given_options),
+      block: nil }
     end
   end
 end

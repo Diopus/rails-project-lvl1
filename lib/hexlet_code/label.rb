@@ -9,7 +9,9 @@ module HexletCode
       default_options = { for: field.to_s }
       given_options = options.except(:as)
 
-      Tag.build('label', default_options.merge(given_options)) { field_value }
+      { name: 'label',
+      options: default_options.merge(given_options),
+      block: field_value }
     end
   end
 end
