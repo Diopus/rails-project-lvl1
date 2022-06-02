@@ -10,8 +10,8 @@ module HexletCode
       given_options = options.except(:as)
 
       { name: 'label',
-      options: default_options.merge(given_options),
-      block: field_value }
+        options: default_options.merge(given_options),
+        block: field_value }
     end
   end
 end

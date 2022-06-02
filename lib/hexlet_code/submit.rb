@@ -9,8 +9,8 @@ module HexletCode
       given_options = options.except(:as)
 
       { name: 'input',
-      options: default_options.merge(given_options),
-      block: nil }
+        options: default_options.merge(given_options),
+        block: nil }
     end
   end
 end

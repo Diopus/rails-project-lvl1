@@ -8,8 +8,8 @@ module HexletCode
         default_options = { name: field, type: 'text', value: field_value }
 
         { name: 'input',
-        options: default_options.merge(given_options),
-        block: nil }
+          options: default_options.merge(given_options),
+          block: nil }
       end
     end
   end

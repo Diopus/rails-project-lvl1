@@ -6,7 +6,7 @@ module HexletCode
     builder = Builder.new(obj)
     form_fields = yield(builder) if block_given?
 
-    form_content = form_fields.map { |field| Tag.build(field[:name], field[:options]) {field[:block]} }
+    form_content = form_fields.map { |field| Tag.build(field[:name], field[:options]) { field[:block] } }
     Tag.build(
       'form',
       action: url,
