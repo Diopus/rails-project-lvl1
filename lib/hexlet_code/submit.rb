@@ -5,7 +5,7 @@ module HexletCode
   # comment
   class Submit
     def self.build(value, options)
-      default_options = { name: 'commit', type: 'submit', value: value }
+      default_options = { name: 'commit', type: 'submit', value: }
       given_options = options.except(:as)
 
       { name: 'input',
